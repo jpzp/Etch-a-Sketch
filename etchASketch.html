@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head> 
+
+</head>
+<button id="clear">Clear Grid</button>
+<div id="container">
+</div>
+
+<script>
+    const clear = document.querySelector('#clear');
+    const container = document.querySelector("#container");
+
+    clear.addEventListener('click', function(){
+        console.log("PRESSSSS")
+        container.textContent = "";
+        let grid_size = prompt("What size grid would you like?");
+        createGrid(grid_size);
+    });
+
+    function createGrid(grid_size){
+        divSize = Math.round(960/ grid_size);
+        container.style.cssText = "display: grid; grid-template-columns: repeat("+grid_size+", "+divSize+"px[col-start]); grid-template-rows: repeat("+grid_size+", "+divSize+"px[row-start]);";
+        for(let i = 0; i<grid_size; i++){
+            for(let j =0; j<grid_size; j++){
+                let div = document.createElement('div');
+                div.className = "grid-item";
+                div.addEventListener('mouseover', function() {
+                  div.style.backgroundColor = "red";
+                });
+                container.appendChild(div);
+            }
+        }
+        
+    }
+
+    container.style.cssText = "display: grid; grid-template-columns: repeat(16, 60px[col-start]); grid-template-rows: repeat(16, 60px[row-start]);";
+    for(let i = 0; i<16; i++){
+        for(let j =0; j<16; j++){
+            let div = document.createElement('div');
+            div.className = "grid-item";
+            
+            div.addEventListener('mouseover', function() {
+                div.style.backgroundColor = "red";
+            });
+            container.appendChild(div);
+        }
+    }
+
+</script>
+
+<style>
+    .grid-item{
+        background-color: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(0, 0, 0, 0.8);
+    }
+
+</style>
+</html>
